@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload YouTube Short</title>
+</head>
+<body>
+  <h1>Upload a YouTube Short</h1>
+
+  <a href="/login">
+    <button type="button">🔐 Sign in with Google</button>
+  </a>
+  <br><br>
+
+
+  <form method="POST" enctype="multipart/form-data">
+    <label>Select a video file:</label><br>
+    <input type="file" name="video" required><br><br>
+
+    <label>How often to upload:</label><br>
+<select name="delay" required>
+  <option value="15">Every 15 minutes</option>
+  <option value="30">Every 30 minutes</option>
+  <option value="60">Every 1 hour</option>
+  <option value="120">Every 2 hours</option>
+  <option value="240">Every 4 hours</option>
+  <option value="360">Every 6 hours</option>
+</select><br><br>
+
+
+    <button type="submit">Schedule Upload</button>
+  </form>
+</body>
+</html>
