@@ -114,9 +114,6 @@ def upload_video(youtube, file_path, title="My YouTube Short", description="Uplo
     return response
 
 def schedule_upload(user_email, video_path, delay_minutes):
-    print(f"⏳ Waiting {delay_minutes} minutes to upload {video_path}")
-    time.sleep(delay_minutes * 60)
-
     youtube = get_youtube_client(user_email)
     if not youtube:
         print(f"❌ Could not find token for user: {user_email}")
@@ -127,12 +124,18 @@ def schedule_upload(user_email, video_path, delay_minutes):
         "He found air from 2017",
         "Air 2017",
         "What did I just watch?",
-        "2023 vs 2017 Air 😂",
+        "2017 Air 😂",
         "This smells like 2017...",
     ]
-    title = random.choice(titles)
-    upload_video(youtube, video_path, title=title)
-    os.remove(video_path)
+
+    while True:
+        title = random.choice(titles)
+        print(f"📤 Uploading {video_path} with title: {title}")
+        upload_video(youtube, video_path, title=title)
+
+        print(f"⏳ Waiting {delay_minutes} minutes before next upload...")
+        time.sleep(delay_minutes * 60)
+
 
 # ========== Main Upload Page ==========
 
